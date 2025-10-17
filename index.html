@@ -1,1 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavithra | Java Full-Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Grey */
+            --accent-color: #28a745; /* Green */
+            --text-dark: #212529; /* Darker text for headings */
+            --text-light: #495057; /* Lighter text for body */
+            --bg-light: #f8f9fa; /* Light background */
+            --bg-white: #ffffff; /* White card background */
+            --border-color: #e9ecef; /* Light border */
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+        }
 
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            color: var(--text-light);
+            background-color: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 25px; /* Add horizontal padding */
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--bg-white);
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 4px 10px var(--shadow-light);
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            margin: 0 0 10px 0;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .header p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-weight: 600;
+        }
+        .nav-bar {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        .nav-bar a {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 8px;
+            font-weight: 600;
+            transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+            position: relative;
+        }
+        .nav-bar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .nav-bar a:hover::after, .nav-bar a.active::after {
+            width: 100%;
+            left: 0;
+        }
+        .nav-bar a:hover {
+            color: var(--primary-color);
+        }
+
+
+        /* Sections */
+        .section {
+            background-color: var(--bg-white);
+            padding: 50px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px var(--shadow-medium);
+            text-align: center; /* Center section titles */
+        }
+        .section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: var(--text-dark);
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block; /* Make border only as wide as text */
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        .section p {
+            font-size: 1.05em;
+        }
+
+        /* About Me */
+        .about-me p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            text-align: center; /* Center about me text */
+        }
+
+        /* Skills */
+        .skills ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            text-align: left; /* Align skill items to left */
+        }
+        .skills li {
+            background-color: var(--bg-light);
+            padding: 18px 25px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px var(--shadow-light);
+            transition: transform 0.2s ease;
+        }
+        .skills li:hover {
+            transform: translateY(-3px);
+        }
+        .skills li strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Two columns on larger screens */
+        }
+        .project {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            background-color: var(--bg-white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            box-shadow: 0 4px 10px var(--shadow-light);
+        }
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px var(--shadow-medium);
+        }
+        .project h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .project p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+            font-size: 1em;
+        }
+        .project strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .project-links a {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-right: 15px;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .project-links a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .project-links a.secondary-link {
+            background-color: var(--secondary-color);
+        }
+        .project-links a.secondary-link:hover {
+            background-color: #5a6268;
+        }
+
+        /* Education */
+        .education p {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+            text-align: center;
+        }
+        .education strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Contact */
+        .contact-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .contact-links a {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin: 0 12px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px var(--shadow-light);
+        }
+        .contact-links a:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-medium);
+        }
+        .contact-links a i {
+            margin-right: 8px; /* For potential icons */
+        }
+
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            color: var(--secondary-color);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-white);
+            box-shadow: 0 -2px 5px var(--shadow-light);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            .header {
+                padding: 20px 0;
+            }
+            .header h1 {
+                font-size: 2.8em;
+            }
+            .header p {
+                font-size: 1.2em;
+            }
+            .nav-bar {
+                margin-top: 20px;
+                padding-top: 15px;
+            }
+            .nav-bar a {
+                display: block;
+                margin: 8px auto;
+                padding: 8px 15px;
+            }
+            .section {
+                padding: 30px;
+            }
+            .section h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .skills ul {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-links a {
+                padding: 12px 25px;
+                margin: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="container">
+            <h1>Pavithra</h1>
+            <p>Java Full-Stack Developer | Innovator | Problem Solver</p>
+            <nav class="nav-bar">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="about" class="section about-me">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate and driven final-year Computer Science student, specializing in robust **Java full-stack development**. With a strong academic foundation in **Data Structures and Algorithms**, I am adept at crafting efficient, scalable, and maintainable backend solutions primarily using **Spring Boot**. My eagerness to learn and adapt to new technologies is matched by my dedication to solving complex problems. I thrive in dynamic environments where I can leverage my analytical skills and technical expertise to contribute to innovative projects and grow as a software engineer.
+            </p>
+        </section>
+
+        <section id="skills" class="section skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li><strong>Languages:</strong> Java (Proficient), SQL (Intermediate), JavaScript (Intermediate), Python (Basic)</li>
+                <li><strong>Backend Development:</strong> Spring Boot, Spring MVC, RESTful APIs, JPA / Hibernate, Microservices Principles</li>
+                <li><strong>Frontend Development:</strong> React, HTML5, CSS3, JavaScript (ES6+)</li>
+                <li><strong>Databases:</strong> MySQL, PostgreSQL</li>
+                <li><strong>Core Concepts:</strong> Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), Software Design Patterns</li>
+                <li><strong>Tools & Version Control:</strong> Git & GitHub, Maven, Postman, IntelliJ IDEA, VS Code</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="section projects">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project">
+                    <h3>Student Attendance Tracker API (Final-Year Project)</h3>
+                    <p>
+                        Developed a comprehensive and robust RESTful API to manage student attendance records. This system facilitates efficient CRUD operations for student and course data, streamlined attendance marking, and dynamic report generation, significantly reducing manual overhead and enhancing accuracy.
+                    </p>
+                    <p><strong>Technologies:</strong> Java, Spring Boot, Spring Data JPA, MySQL, REST APIs, Maven</p>
+                    <div class="project-links">
+                        <a href="[LINK TO YOUR GITHUB REPO FOR ATTENDANCE TRACKER]" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="project">
+                    <h3>Skincare E-commerce Website (React.js Frontend)</h3>
+                    <p>
+                        Engineered a modern and responsive e-commerce platform for skincare products. The user-friendly frontend was built using **React.js**, focusing on dynamic product displays, intuitive navigation, and a seamless shopping experience. Integrated with a placeholder API for product data.
+                    </p>
+                    <p><strong>Technologies:</strong> React.js, JavaScript, HTML5, CSS3, RESTful API Integration, npm</p>
+                    <div class="project-links">
+                        <a href="[LINK TO YOUR GITHUB REPO FOR REACT SKINCARE FRONTEND]" target="_blank">View on GitHub</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section education">
+            <h2>Education</h2>
+            <p>
+                <strong>[Your College Name]</strong>, Tiruvannamalai, Tamil Nadu<br>
+                <strong>B.E. in Computer Science & Engineering</strong><br>
+                Expected Graduation: 2026
+            </p>
+        </section>
+
+        <section id="contact" class="section contact">
+            <h2>Let's Connect!</h2>
+            <p>
+                I am actively seeking full-time opportunities where I can apply my skills and passion for software development.
+                Feel free to reach out to discuss potential roles or exciting projects!
+            </p>
+            <div class="contact-links">
+                <a href="mailto:[YOUR_EMAIL_ADDRESS]" target="_blank">Email Me</a>
+                <a href="[LINK TO YOUR LINKEDIN PROFILE]" target="_blank">LinkedIn</a>
+                <a href="[LINK TO YOUR GITHUB PROFILE]" target="_blank">GitHub</a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Pavithra. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
